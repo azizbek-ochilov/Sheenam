@@ -9,8 +9,8 @@ using Sheenam.Api.Models.Foundations.Guests;
 
 namespace Sheenam.Api.Brokers.Storages
 {
-    public partial class StorageBrokers
+    public partial class StorageBroker
     {
-        public DbSet<Guest>Guests{get; set;}
+        public DbSet<Guest> Guests { get; set; }
     }
 }
