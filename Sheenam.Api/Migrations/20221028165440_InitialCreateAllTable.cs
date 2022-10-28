@@ -22,10 +22,7 @@ namespace Sheenam.Api.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<int>(type: "int", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Guests", x => x.Id);
-                });
+                constraints:table => table.PrimaryKey("PK_Guests", x => x.Id));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
