@@ -1,6 +1,6 @@
 ﻿//==============================================
 //Copyright (c) Coalition Good-Hearted Engineers
-//Free to Use Comfort And Peace
+//Free to Find Comfort and Peace
 //==============================================
 
 using Xunit;
