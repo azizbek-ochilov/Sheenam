@@ -8,11 +8,12 @@ using Moq;
 using Sheenam.Api.Brokers.Storages;
 using Sheenam.Api.Models.Foundations.Guests;
 using Sheenam.Api.Services.Foundations.Guests;
+using Tynamix.ObjectFiller;
 using Xunit;
 
 namespace Sheenam.Api.Test.Unit.Sevices.Foundations.Guests
 {
-    public class GuestServiceTests
+    public partial class GuestServiceTests
     {
         private readonly Mock<IStorageBroker> storageBrokerMock;
         private readonly IGuestService guestService;
@@ -20,32 +21,23 @@ namespace Sheenam.Api.Test.Unit.Sevices.Foundations.Guests
         public GuestServiceTests() 
         {
             this.storageBrokerMock = new Mock<IStorageBroker>();
-            this.guestService  = new GuestService(storageBroker: this.storageBrokerMock.Object);
+            this.guestService  = 
+                new GuestService(storageBroker: this.storageBrokerMock.Object);
         }
 
-        [Fact]
-        public async Task ShouldAddGuestAsyc()
+        private static Guest CreateRandomGuest() =>
+            CreateGuestFiller(date: GetRandomDateTimeOffset()).Create();
+
+        private static DateTimeOffset GetRandomDateTimeOffset() =>
+            new DateTimeRange(earliestDate: new DateTime()).GetValue();
+
+        private static Filler<Guest> CreateGuestFiller(DateTimeOffset  date)
         {
-            //Arrange
-            Guest randomGuest = new Guest()
-            {
-                Id = Guid.NewGuid(),
-                FirstName = "Lazizbek",
-                LastName = "Rustamov",
-                DateOfBirth = new DateTimeOffset(),
-                Address = "Tashkent, YangiLife #36",
-                PhoneNumber = "999999999",
-                Email = "lazizbek@gmail.com",
-                Gender = Guest.GenderType.Male
-            };
+            var filler = new Filler<Guest>();
 
-            this.storageBrokerMock.Setup(broker=>
-                broker.InsertGuestAsync(randomGuest)).ReturnsAsync(randomGuest);
+            filler.Setup().OnType<DateTimeOffset>.Use(date);
 
-            //Act
-            Guest actual = await this.guestService.AddGuestAsync(randomGuest);
-            //Assert
-            actual.Should().BeEquivalentTo(randomGuest);
+            return filler;
         }
     }
 }
