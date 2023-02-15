@@ -31,13 +31,14 @@ namespace Sheenam.Api.Test.Unit.Sevices.Foundations.Guests
         private static DateTimeOffset GetRandomDateTimeOffset() =>
             new DateTimeRange(earliestDate: new DateTime()).GetValue();
 
-        private static Filler<Guest> CreateGuestFiller(DateTimeOffset  date)
-        {
+         private static Filler<Guest> CreateGuestFiller(DateTimeOffset date)
+          {
             var filler = new Filler<Guest>();
 
-            filler.Setup().OnType<DateTimeOffset>.Use(date);
+            filler.Setup()
+                .OnType<DateTimeOffset>().Use(date);
 
             return filler;
-        }
+          }
     }
 }
