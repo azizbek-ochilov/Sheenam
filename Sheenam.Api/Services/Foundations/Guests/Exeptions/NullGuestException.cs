@@ -7,9 +7,10 @@ using Xeptions;
 
 namespace Sheenam.Api.Services.Foundations.Guests.Exeptions
 {
-    public class NullGuestExeptions : Xeption
+    public class NullGuestException : Xeption
     {
-        public NullGuestExeptions() 
-        { }
+        public NullGuestException() 
+            :base(message:"Guest is null")
+        {}
     }
 }
