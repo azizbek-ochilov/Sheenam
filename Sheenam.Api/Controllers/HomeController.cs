@@ -8,12 +8,12 @@ using RESTFulSense.Controllers;
 
 namespace Sheenam.Api.Controllers
 {
-	[ApiController]
-	[Route("api/[controller]")]
-	public class HomeController : RESTFulController
-	{
-		[HttpGet]
-		public ActionResult<string> Get()=>
-			Ok("Hello Mario, the princess is another castle");
-	}
+    [ApiController]
+    [Route("api/[controller]")]
+    public class HomeController : RESTFulController
+    {
+        [HttpGet]
+        public ActionResult<string> Get() =>
+            Ok("Hello Mario, the princess is another castle");
+    }
 }
