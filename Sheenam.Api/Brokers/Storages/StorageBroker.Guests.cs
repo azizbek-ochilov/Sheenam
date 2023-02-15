@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Sheenam.Api.Brokers.Storages
 {
-    public partial class  StorageBroker
+    public partial class StorageBroker
     {
         DbSet<Guest> Guests { get; set; }
         public async ValueTask<Guest> InsertGuestAsync(Guest guest)
